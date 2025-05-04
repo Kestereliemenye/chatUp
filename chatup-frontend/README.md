@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+# STRUCTURE
+/app/
+├── /api/                  <-- API routes (backend inside Next.js)
+│    └── auth/route.ts
+├── /chat/                 <-- /chat page
+│    └── page.tsx
+├── /login/                <-- /login page
+│    └── page.tsx
+├── /register/             <-- /register page
+│    └── page.tsx
+├── /dashboard/            <-- /dashboard page (after login)
+│    ├── layout.tsx        <-- (optional, custom dashboard layout)
+│    └── page.tsx
+├── /profile/              <-- /profile page
+│    └── page.tsx
+├── layout.tsx             <-- main layout for whole app
+├── page.tsx               <-- home page (/)
+├── globals.css            <-- global styles
+
+
+
+
+# structure of the app
+so bascialy after the login it goes to the dash board that will display a dynamic message of the user name 
