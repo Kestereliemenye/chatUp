@@ -1,0 +1,41 @@
+.top{
+    display: flex;
+    width: 100vw;
+    height: 40vh;
+}
+.left{
+    width: 50vw;
+ 
+}
+.leftItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6a0070;
+    font-size: 30px;
+}
+.right{
+    width: 50vw;
+    position: relative;
+}
+.rightItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);    
+}
+.rightItem button{
+    background-color: #6a0070;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 200px;
+}

@@ -91,6 +91,7 @@ export default function LoginForm() {
               <input
                 type="text"
                 placeholder="Name"
+                required
                 value={signUpData.name}
                 onChange={(e) =>
                   setSignUpData({ ...signUpData, name: e.target.value })
@@ -102,6 +103,7 @@ export default function LoginForm() {
               <input
                 type="email"
                 placeholder="Email"
+                required
                 value={signUpData.email}
                 onChange={(e) =>
                   setSignUpData({ ...signUpData, email: e.target.value })
@@ -113,6 +115,7 @@ export default function LoginForm() {
               <input
                 type="password"
                 placeholder="Password"
+                required
                 value={signUpData.password}
                 onChange={(e) =>
                   setSignUpData({ ...signUpData, password: e.target.value })
@@ -134,6 +137,7 @@ export default function LoginForm() {
                 type="email"
                 placeholder="Email"
                 name="email"
+                required
                 value={signInData.email}
                 onChange={(e) =>
                   setSignInData({ ...signInData, email: e.target.value })
@@ -146,6 +150,7 @@ export default function LoginForm() {
                 type="password"
                 placeholder="Password"
                 name="password"
+                required
                 value={signInData.password}
                 onChange={(e) =>
                   setSignInData({ ...signInData, password: e.target.value })
@@ -156,9 +161,7 @@ export default function LoginForm() {
             <a href="Forgot your password" className={styles.forgot}>
               Forgot your password?
             </a>
-            <button type="submit">
-              Sign in
-            </button>
+            <button type="submit">Sign in</button>
           </form>
         </div>
 

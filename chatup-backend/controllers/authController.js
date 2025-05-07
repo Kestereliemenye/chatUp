@@ -3,6 +3,8 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { createAccessToken, createRefreshToken } = require("../utils/token");
+// FOR Random username
+const generateUsername = require("../utils/generateUserName");
 
 exports.signUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -17,10 +19,14 @@ exports.signUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     //create user
+    //add username
+    const username = generateUsername()
+    console.log(username)
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
+      username
     });
     //respond
     res.status(201).json({ message: "User signed up", userID: user._id });
@@ -97,7 +103,7 @@ exports.userHandler = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.json({ name: user.name, email: user.email }); //sends back user name and email
+    res.json({ name: user.name, email: user.email , username: user.username}); //sends back user name and email
   } catch (err) {
     console.error(err);
     res.status(403).json({ message: "invalid token" });

@@ -37,8 +37,8 @@
 .body h1 {
   color: black;
 }
-.body span{
-    font-size: 12px;
+.body span {
+  font-size: 12px;
 }
 .infield {
   position: relative;
@@ -52,138 +52,137 @@
   border: none;
   outline: none;
 }
-.body label{
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    transform: translateX(-50%);
-    width: 0%;
-    height: 2px;
-    transition: 0.3s;
-    background-color: black;
+.body label {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  transition: 0.3s;
+  background-color: black;
 }
 .body input:focus ~ label {
-    width: 100%;
+  width: 100%;
 }
-.body a{
-    color: #333;
-    font-size: 14px;
-    text-decoration: none;
-    margin: 15px 0px;
+.body a {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0px;
 }
-.forgot{
-    padding-bottom: 3px;
-    border-bottom: 2px solid #EEE;
+.forgot {
+  padding-bottom: 3px;
+  border-bottom: 2px solid #eee;
 }
-.body button{
-    border-radius: 20px;
-    border: 1px solid gre;
-    background-color: grey;
-    color: #EEE;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-
+.body button {
+  border-radius: 20px;
+  border: 1px solid grey;
+  background-color: #d266dd;
+  color: #eee;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
 }
-.formContainer button{
-    margin-top: 17px;
-    transition: 80ms ease-in;
+.body button:active{
+    transform: scale(0.8);
+    transition: 1s ease-out;
 }
-.formContainer button:hover{
-    background-color: #FFF;
-    color: grey;
+.formContainer button {
+  margin-top: 17px;
+  transition: 80ms ease-in;
+}
+.formContainer button:hover {
+  background-color: #fff;
+  color: #d266dd;
 }
 .overlayContainer {
-    position: absolute;
-    top: 0;
-    left: 60%;
-    width: 40%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 60%;
+  width: 40%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 9;
 }
-.body #overlayBtn{
-    cursor: pointer;
-    position: absolute;
-    left: 50%;
-    top: 304px;
-    transform: translateX(-50%);
-    width: 143.67px;
-    height: 40px;
-    border: 1px solid #FFF;
-    background: transparent;
-    border-radius:20px ;
+.body #overlayBtn {
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 304px;
+  transform: translateX(-50%);
+  width: 143.67px;
+  height: 40px;
+  border: 1px solid #fff;
+  background: transparent;
+  border-radius: 20px;
 }
-.overlay{
-    position: relative;
-    background-color:rgb(128, 128, 128) ;
-    color: #FFF;
-    left: -150%;
-    height: 100%;
-    width: 250%;
-    transition: transform 0.6s ease-in-out;
+.overlay {
+  position: relative;
+  background-color: #6a0070;
+  color: #fff;
+  left: -150%;
+  height: 100%;
+  width: 250%;
+  transition: transform 0.6s ease-in-out;
 }
-.overlayPanel{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0px 40px;
-    text-align: center;
-    height:100% ;
-    width: 340px;
-    transition: 0.6s ease-in-out;
+.overlayPanel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 40px;
+  text-align: center;
+  height: 100%;
+  width: 340px;
+  transition: 0.6s ease-in-out;
 }
-.overlayLeft{
-    right: 60%;
-    transform: translateX(-12%);
-}.overlayRight{
-    right: 0;
-    transform: translateX(0%);
+.overlayLeft {
+  right: 60%;
+  transform: translateX(-12%);
 }
-.overlayPanel h1{
-    color: #FFF;
+.overlayRight {
+  right: 0;
+  transform: translateX(0%);
 }
-.body p{
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    margin: 25px 0px 35px;
+.overlayPanel h1 {
+  color: #fff;
 }
-.overlayPanel button{
-    /* border: none; */
-    border-color: white;
-    background-color: transparent;
+.body p {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 25px 0px 35px;
 }
-.panelRightActive .overlayContainer{
-    transform: translateX(-150%);
+.overlayPanel button {
+  /* border: none; */
+  border-color: white;
+  background-color: transparent;
+}
+.panelRightActive .overlayContainer {
+  transform: translateX(-150%);
 }
 .panelRightActive .overlay {
-    transform: translateX(50%);
+  transform: translateX(50%);
 }
-.panelRightActive .overlayLeft{
-    transform: translateX(25%);
+.panelRightActive .overlayLeft {
+  transform: translateX(25%);
 }
-.panelRightActive .overlayLRight{
-    transform: translateX(25%);
+.panelRightActive .overlayLRight {
+  transform: translateX(25%);
 }
-.panelRightActive .signIn{
-    transform: translateX(20%);
-    opacity: 0;
+.panelRightActive .signIn {
+  transform: translateX(20%);
+  opacity: 0;
 }
-.panelRightActive .signUp{
-    transform: translateX(66.7%);
-    opacity: 1;
-    z-index: 5;
-}
-
-
-/* Extra Large (xl): ≥1280px */
-@media (min-width: 1280px) {
-  /* your styles */
+.panelRightActive .signUp {
+  transform: translateX(66.7%);
+  opacity: 1;
+  z-index: 5;
 }

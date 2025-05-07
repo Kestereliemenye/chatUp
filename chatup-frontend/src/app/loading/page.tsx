@@ -14,6 +14,7 @@ export default function LoadingPage() {
           height={300}
           width={300}
           alt="loading-image"
+          priority
         />
       </motion.div>
       <div className="bottom-design"></div>

@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import styles from "./profile.module.css";
 
-export default function DashboardPage() {
+export default function Profile() {
   const [user, setUser] = useState(null);
   const router = useRouter();
 
@@ -22,7 +24,9 @@ export default function DashboardPage() {
           router.push("/login");
           throw new Error("User not authenticated");
         }
-        const data = await res.json();
+          const data = await res.json();
+          console.log(data);
+          
         setUser(data); //assuming data contains user info
       } catch (err) {
         console.error(err);
@@ -31,11 +35,31 @@ export default function DashboardPage() {
     };
     fetchUser();
   }, [router]);
-
-  if (!user) return <div>Loading...</div>; //show loading till data is fetched
   return (
-    <div>
-      <h1>Welcome , {user.name}</h1>
+    <div className={styles.top}>
+      <div className={styles.left}>
+        <div className={styles.leftItem}>
+          <div>
+            <Image
+              src="/profile-picD.png"
+              alt="profile pic"
+              width={250}
+              height={250}
+            />
+          </div>
+          <div>
+            {user && <h1>{user.name}</h1>}
+            {user && <p>{user.username}</p>}
+            <p>Bio</p>
+          </div>
+        </div>
+      </div>
+      <div className={styles.right}>
+        <div className={styles.rightItem}>
+          <button>Edit Profile</button>
+          <button>Share Profile</button>
+        </div>
+      </div>
     </div>
   );
 }
