@@ -5,11 +5,28 @@ import { useAuth } from "../context/AuthContext";
 import { motion } from "framer-motion";
 import styles from "./login.module.css";
 
-export default function LoginForm() {
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * A functional component that renders a login and sign-up form with a toggleable
+ * interface. It handles user authentication by allowing users to either sign in
+ * with existing credentials or sign up to create a new account.
+*
+* Features:
+* - Sign-up form for new users to register with their name, email, and password.
+ * - Sign-in form for existing users to log in with their email and password.
+ * - Toggle functionality to switch between sign-in and sign-up forms.
+ * - Handles authentication requests to the server and manages access tokens on
+ *   successful login.
+ * - Redirects users to the dashboard upon successful login.
+ * - Includes an overlay with additional information and navigation buttons.
+*/
+
+/*******  95224e5b-ff1b-4516-9aa5-c1ca638bb9cb  *******/export default function LoginForm() {
   const [isSignUp, setIsSignUp] = useState(false);
   const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  
   // Toggle between sign-in and sign-up
   const togglePanel = () => {
     setIsSignUp(!isSignUp);
@@ -28,6 +45,7 @@ export default function LoginForm() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       const res = await fetch("http://localhost:7000/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -43,6 +61,8 @@ export default function LoginForm() {
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -50,6 +70,7 @@ export default function LoginForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
       const res = await fetch("http://localhost:7000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -72,11 +93,14 @@ export default function LoginForm() {
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false)
     }
   };
 
   return (
     <div className={styles.body}>
+      {loading && <div className={styles.loading}></div>}
       <motion.div
         className={`${styles.container} ${
           isSignUp ? styles.panelRightActive : ""

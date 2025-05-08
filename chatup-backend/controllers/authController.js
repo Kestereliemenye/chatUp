@@ -87,25 +87,51 @@ exports.refreshToken = (req, res) => {
     res.json({ accessToken });
   });
 };
+
+// to dynamically get user details
 exports.userHandler = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1]; // etracts token from "Bearer <token>"
-  console.log( "token" ,token);
-
   if (!token) {
     return res.status(401).json({ message: "Not authorized" });
   }
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    console.log("access token" , process.env.ACCESS_TOKEN_SECRET);
+
     
     // fetch user from database based on decoded id
     const user = await User.findById(decoded.id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    res.json({ name: user.name, email: user.email , username: user.username}); //sends back user name and email
+    res.json({ name: user.name, email: user.email , username: user.username, bio: user.bio}); //sends back user name and email
   } catch (err) {
     console.error(err);
     res.status(403).json({ message: "invalid token" });
   }
 };
+
+// to edit user bio
+exports.updateProfile = async (req, res) => {
+  const token = req.headers.authorization?.split(' ')[1]; // etracts token from "Bearer <token>"
+  if (!token) {
+    return res.status(401).json({message: "User not authorized"})
+  } 
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const { bio , username} = req.body;
+    const user = await User.findByIdAndUpdate(
+      decoded.id,
+      {bio,username},
+      {new: true}// return updated document
+    )
+    if (!user) {
+      return res.status(404).json({message: "User not found"})
+    }
+    res.status(200).json({message:"Profile updated", bio: user.bio, username: user.username})// sends back to frontend
+  } catch (err) {
+    console.error(err);
+    res.status(403).json({ message: "invalid token" });
+  }
+  
+}
+

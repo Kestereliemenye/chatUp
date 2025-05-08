@@ -1,41 +1,84 @@
-.top{
-    display: flex;
-    width: 100vw;
-    height: 40vh;
+.top {
+  display: flex;
+  width: 100vw;
+  height: 40vh;
 }
-.left{
-    width: 50vw;
- 
+.left {
+  width: 50vw;
 }
-.leftItem{
+.leftItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6a0070;
+  font-size: 30px;
+}
+.userNameNdBio {
+  display: flex;
+  color: #6a0070;
+  flex-direction: column;
+}
+.userNameNdBio input {
+  width: 300px;
+  height: 30px;
+  color: #6a0070;
+  font-size: 20px;
+  border: none;
+  background-color: white;
+  outline: none;
+}
+.userNameNdBio label {
+  margin-left: 10px;
+  font-size: 18px;
+  color: #333;
+  font-family: sans-serif;
+}
+.userNameNdBio input.editing {
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px;
+}
+.right {
+  width: 50vw;
+  position: relative;
+}
+.rightItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.rightItem button {
+  background-color: #6a0070;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  width: 200px;
+}
+.loader{
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #6a0070;
-    font-size: 30px;
 }
-.right{
-    width: 50vw;
-    position: relative;
+.loading::after{
+    content: "";
+    width: 50px;
+    height: 50px;
+    border: 5px solid #6a0070;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: loading 1s linear infinite;
 }
-.rightItem{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);    
-}
-.rightItem button{
-    background-color: #6a0070;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-size: 20px;
-    cursor: pointer;
-    width: 200px;
+@keyframes loading {
+    to{
+        transform: rotate(1turn);
+    }
+    
 }

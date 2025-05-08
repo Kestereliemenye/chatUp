@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(
     cors({
         origin: "http://localhost:3000", // allows requests from react
-        methods: "GET,POST",//Allow these http methods
+        methods: "GET,POST,PUT",//Allow these http methods
         allowedHeaders:["Content-type", "Authorization"],//allow this header
         credentials:true
     })

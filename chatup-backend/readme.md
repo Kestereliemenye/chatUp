@@ -1,3 +1,4 @@
+WILL DELETE THIS READ ME FILE UPON APP COMPLETION
 # For cleaner codespace
 /server
   /controllers
@@ -19,5 +20,8 @@ the public is empty for now
 The routes contains the endpoints and the routes assigned to is that the frontend will call
 The utils contains the token config
 
-# Things i did
+# Things i did 07/5/2025
 --> i added random name generator to make username
+
+# Things i did 08/5/2025
+--> I made bio and user name editable and it svaes to db 
