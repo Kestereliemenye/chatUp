@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, use } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./profile.module.css";
@@ -10,16 +10,14 @@ export default function Profile() {
   const [user, setUser] = useState(null);
   const [initialBio, setInitialBio] = useState("");
   const [initialUsername, setInitialUsername] = useState("");
-  const [shouldBlur, setShouldBlur] = useState(true);
   const [loading, setloading] = useState(false); //load state
   const router = useRouter();
 
   // to handle the editable bio
   const handleEdit = async () => {
-    setIsEditing(false);
+    setloading(true);
     try {
       const token = localStorage.getItem("accessToken");
-      setloading(true)
       const res = await fetch(
         "http://localhost:7000/api/auth/user/update/profile",
         {
@@ -40,27 +38,15 @@ export default function Profile() {
     } catch (err) {
       console.error("Failed to save bio:", err);
     } finally {
-      setloading(false)
+      setloading(false);
+      setIsEditing(false);
     }
   };
 
-
-  const bioInputRef = useRef(null);
-  const usernameInputRef = useRef(null);
-
-
   useEffect(() => {
-    if (isEditing && bioInputRef.current) {
-      bioInputRef.current.focus();
-      setShouldBlur(false); //should not blur when focsuing on bio
-    }
-  }, [isEditing, shouldBlur]);
-
-  useEffect(() => {
-
     const fetchUser = async () => {
       const token = localStorage.getItem("accessToken");
-      setloading(true)
+      setloading(true);
       try {
         const res = await fetch("http://localhost:7000/api/auth/user", {
           method: "GET",
@@ -85,30 +71,26 @@ export default function Profile() {
         console.error(err);
         router.push("/login"); // Redirect to login if the user is not authenticated
       } finally {
-        setloading(false)
+        setloading(false);
       }
     };
     fetchUser();
   }, [router]);
 
-
-  //handle blur
-  const handleBlur = (e) => {
-    // If the blur happens outside of the input fields, reset the changes
-    if (
-      !usernameInputRef.current.contains(e.relatedTarget) &&
-      !bioInputRef.current.contains(e.relatedTarget)
-    ) {
-      setBio(initialBio);
-      if (user) {
-        setUser((prev) => ({ ...prev, username: initialUsername }));
-      }
-      setIsEditing(false);
-    }
+  //handle cancel
+  const handleCancel = () => {
+    setBio(initialBio);
+    setUser((prev) => ({ ...prev, username: initialUsername }));
+    setIsEditing(false);
   };
+
   return (
-    <div className={styles.top} onBlur={handleBlur}>
-      {loading && <div className={styles.loader}></div>}
+    <div className={styles.top}>
+      {loading && (
+        <div className={styles.fullScreenLoader}>
+          <div className={styles.loader}></div>
+        </div>
+      )}
       <div className={styles.left}>
         <div className={styles.leftItem}>
           <div>
@@ -131,7 +113,6 @@ export default function Profile() {
                   <input
                     type="text"
                     value={user.username || ""}
-                    ref={usernameInputRef}
                     disabled={!isEditing}
                     onChange={(e) =>
                       setUser((prev) => ({ ...prev, username: e.target.value }))
@@ -147,7 +128,6 @@ export default function Profile() {
                 onChange={(e) => setBio(e.target.value)}
                 className={isEditing ? styles.editing : ""}
                 disabled={!isEditing}
-                ref={bioInputRef}
               ></input>
             </div>
           </div>
@@ -156,7 +136,10 @@ export default function Profile() {
       <div className={styles.right}>
         <div className={styles.rightItem}>
           {isEditing ? (
-            <button onClick={handleEdit}>Save</button>
+            <>
+              <button onClick={handleEdit}>save</button>
+              <button onClick={handleCancel}>cancel</button>
+            </>
           ) : (
             <button onClick={() => setIsEditing(true)}>Edit Profile</button>
           )}

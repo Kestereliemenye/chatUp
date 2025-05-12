@@ -25,6 +25,7 @@ import styles from "./login.module.css";
   const [isSignUp, setIsSignUp] = useState(false);
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
   const router = useRouter();
   
   // Toggle between sign-in and sign-up
@@ -70,7 +71,7 @@ import styles from "./login.module.css";
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true)
+      setLoadingLogin(true)
       const res = await fetch("http://localhost:7000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -94,18 +95,18 @@ import styles from "./login.module.css";
     } catch (err) {
       console.error(err);
     } finally {
-      setLoading(false)
+      setLoadingLogin(false)
     }
   };
 
   return (
     <div className={styles.body}>
-      {loading && <div className={styles.loading}></div>}
       <motion.div
         className={`${styles.container} ${
           isSignUp ? styles.panelRightActive : ""
         }`}
       >
+        {loading && <div className={styles.loader}></div>}
         {/* Sign Up Form */}
         <div className={`${styles.formContainer} ${styles.signUp}`}>
           <form onSubmit={handleSignUp}>
@@ -153,6 +154,7 @@ import styles from "./login.module.css";
 
         {/* Sign In Form */}
         <div className={`${styles.formContainer} ${styles.signIn}`}>
+          {loadingLogin && <div className={styles.loaderLogin}></div>}
           <form onSubmit={handleLogin}>
             <h1>Sign in</h1>
             <span>or use your account</span>

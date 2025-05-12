@@ -25,3 +25,13 @@ The utils contains the token config
 
 # Things i did 08/5/2025
 --> I made bio and user name editable and it svaes to db 
+completed
+
+# Things i should do next
+--> Make isediting work only after fetch is succesful
+-->Upload profile picture
+-->go and learn the basic of bloging ie
+ how to see multiple users
+ how to chat with multiple users
+ how to send request
+ how to post and uplaod to database

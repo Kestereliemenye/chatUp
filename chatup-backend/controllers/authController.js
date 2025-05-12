@@ -127,7 +127,9 @@ exports.updateProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({message: "User not found"})
     }
-    res.status(200).json({message:"Profile updated", bio: user.bio, username: user.username})// sends back to frontend
+    res.status(200).json({ message: "Profile updated", bio: user.bio, username: user.username })
+    console.log(bio , username);
+    // sends back to frontend
   } catch (err) {
     console.error(err);
     res.status(403).json({ message: "invalid token" });
